@@ -1,0 +1,9 @@
+{
+  "curios.identifier.heart": "Heart",
+  "item.heartless.rogue_heart": "Rogue Heart",
+  "item.heartless.barbarian_heart": "Barbarian Heart",
+  "item.heartless.cleric_heart": "Cleric Heart",
+  "item.heartless.ranger_heart": "Ranger Heart",
+  "item.heartless.queen_heart": "Heart of the Queen",
+  "death.attack.heart_attack": "%s died of a broken heart"
+}

@@ -1,0 +1,4 @@
+{
+  "entities": ["zombie","husk","drowned","skeleton","stray","piglin", "pillager", "witch"],
+  "slots": ["enemy_heart"]
+}
