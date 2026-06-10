@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Random;
 @Mod.EventBusSubscriber(modid = Heartless.MOD_ID)
 public class HaveHeart {
-
-
     @SubscribeEvent
     public static void onFinalizeSpawn(MobSpawnEvent.FinalizeSpawn event){
         if (event.getLevel().isClientSide()) return;
