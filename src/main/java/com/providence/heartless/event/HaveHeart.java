@@ -1,12 +1,8 @@
 package com.providence.heartless.event;
 
 import com.providence.heartless.Heartless;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.monster.*;
-import net.minecraft.world.entity.monster.piglin.Piglin;
-import net.minecraft.world.entity.monster.piglin.PiglinBrute;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -15,7 +11,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.ArrayList;
 import java.util.Random;
-@Mod.EventBusSubscriber(modid = Heartless.MODID)
+@Mod.EventBusSubscriber(modid = Heartless.MOD_ID)
 public class HaveHeart {
 
 

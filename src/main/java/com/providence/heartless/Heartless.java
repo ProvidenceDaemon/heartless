@@ -17,13 +17,13 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
-@Mod(Heartless.MODID)
+@Mod(Heartless.MOD_ID)
 
 public class Heartless {
 
-    public static final String MODID = "heartless";
-    public static final ResourceKey<DamageType> HEART_ATTACK = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Heartless.MODID, "heart_attack"));
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Heartless.MODID);
+    public static final String MOD_ID = "heartless";
+    public static final ResourceKey<DamageType> HEART_ATTACK = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Heartless.MOD_ID, "heart_attack"));
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Heartless.MOD_ID);
 
     public static final RegistryObject<Item> ROGUE_HEART = ITEMS.register("rogue_heart", RogueHeart::new);
     public static final RegistryObject<Item> RANGER_HEART = ITEMS.register("ranger_heart", RangerHeart::new);

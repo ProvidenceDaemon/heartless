@@ -1,7 +1,6 @@
 package com.providence.heartless.datagen;
 
 import com.providence.heartless.Heartless;
-import com.providence.heartless.item.curios.BarbarianHeart;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -15,7 +14,7 @@ import static com.providence.heartless.Heartless.*;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
-        super(output, Heartless.MODID, existingFileHelper);
+        super(output, Heartless.MOD_ID, existingFileHelper);
     }
 
     @Override
@@ -31,12 +30,12 @@ public class ModItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(Heartless.MODID,"item/" + item.getId().getPath()));
+                new ResourceLocation(Heartless.MOD_ID,"item/" + item.getId().getPath()));
     }
 
     private ItemModelBuilder handheldItem(RegistryObject<SwordItem> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("minecraft:item/handheld")).texture("layer0",
-                new ResourceLocation(Heartless.MODID,"item/" + item.getId().getPath()));
+                new ResourceLocation(Heartless.MOD_ID,"item/" + item.getId().getPath()));
     }
 }

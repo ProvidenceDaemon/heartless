@@ -21,7 +21,7 @@ public class AttributeContainer {
     public AttributeModifier createModifier(UUID uuid) {
         return new AttributeModifier(
                 uuid,
-                String.format("%s_%s_modifier", Heartless.MODID, attribute.getDescriptionId()),
+                String.format("%s_%s_modifier", Heartless.MOD_ID, attribute.getDescriptionId()),
                 value,
                 operation
         );
