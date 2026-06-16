@@ -1,0 +1,105 @@
+package com.providence.heartless.item.curios;
+
+import com.providence.heartless.Heartless;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.*;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.stats.StatsCounter;
+import net.minecraftforge.fml.common.Mod;
+import team.lodestar.lodestone.helpers.DamageTypeHelper;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotContext;
+
+import static com.providence.heartless.Heartless.HEART_ATTACK;
+
+@Mod.EventBusSubscriber(modid = Heartless.MOD_ID)
+public class MomentumHeart extends HeartCurio {
+    @Override
+    public void curioTick(SlotContext slotContext, ItemStack stack) {
+        final LivingEntity livingEntity = slotContext.entity();
+        if (livingEntity.level().getGameTime() % 200L == 0) {
+            boolean increase = trackStatIncrease(slotContext, stack);
+            //if the player has taken actions in the last second, increase level
+            if(increase){
+                int currentInertiaLevel = livingEntity.getEffect(Heartless.INERTIA.get()).getAmplifier();
+                livingEntity.addEffect(new MobEffectInstance(Heartless.INERTIA.get(), 1000, currentInertiaLevel + 1));
+            }
+            //if the player has not taken actions in the last second, decrease level
+            else{
+                int currentInertiaLevel = livingEntity.getEffect(Heartless.INERTIA.get()).getAmplifier();
+                if (currentInertiaLevel == 0){
+                    CuriosApi.getCuriosInventory(livingEntity).ifPresent(curiosInventory -> {
+                        curiosInventory.setEquippedCurio("heart", 0, new ItemStack(Heartless.BROKEN_MOMENTUM_HEART.get()));
+                    });
+                }
+                else{
+                    livingEntity.removeEffect(Heartless.INERTIA.get());
+                    livingEntity.addEffect(new MobEffectInstance(Heartless.INERTIA.get(), 1000, currentInertiaLevel - 1));
+                }
+            }
+        }
+    }
+
+    public boolean trackStatIncrease(SlotContext slotContext, ItemStack stack){
+        Player player = ((Player) slotContext.entity());
+        StatsCounter statsHandler = new StatsCounter();
+        int blocksMoved = statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_ONE_CM)) + statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_UNDER_WATER_ONE_CM)) +
+                statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_ON_WATER_ONE_CM)) + statsHandler.getValue(Stats.CUSTOM.get(Stats.SPRINT_ONE_CM)) +
+                statsHandler.getValue(Stats.CUSTOM.get(Stats.SWIM_ONE_CM)) + statsHandler.getValue(Stats.CUSTOM.get(Stats.SPRINT_ONE_CM));
+        int damageDealt = statsHandler.getValue(Stats.CUSTOM.get(Stats.DAMAGE_DEALT));
+
+        int movedDiff = blocksMoved - stack.getTag().getInt("BlocksMoved");
+        int damageDiff = damageDealt - stack.getTag().getInt("DamageDealt");
+
+        if((movedDiff + damageDealt * 2) >= 15){
+            stack.getOrCreateTag().putInt("BlocksMoved", blocksMoved);
+            stack.getOrCreateTag().putInt("DamageDealt", damageDealt);
+            return true;
+        }
+        else{
+            stack.getOrCreateTag().putInt("BlocksMoved", blocksMoved);
+            stack.getOrCreateTag().putInt("DamageDealt", damageDealt);
+            return false;
+        }
+    }
+
+    @Override
+    public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
+        ServerPlayer player = ((ServerPlayer) slotContext.entity());
+        StatsCounter statsHandler = player.getStats();
+        int blocksMoved = statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_ONE_CM)) + statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_UNDER_WATER_ONE_CM)) +
+                statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_ON_WATER_ONE_CM)) + statsHandler.getValue(Stats.CUSTOM.get(Stats.SPRINT_ONE_CM)) +
+                statsHandler.getValue(Stats.CUSTOM.get(Stats.SWIM_ONE_CM)) + statsHandler.getValue(Stats.CUSTOM.get(Stats.SPRINT_ONE_CM));
+        int damageDealt = statsHandler.getValue(Stats.CUSTOM.get(Stats.DAMAGE_DEALT));
+
+        stack.getOrCreateTag().putInt("BlocksMoved", blocksMoved);
+        stack.getOrCreateTag().putInt("DamageDealt", damageDealt);
+
+        if (slotContext.entity().hasEffect(Heartless.INERTIA.get())){
+            slotContext.entity().addEffect(new MobEffectInstance(Heartless.INERTIA.get(), 1000, 9));
+        }
+    }
+
+    @Override
+    public void onUnequip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
+        final LivingEntity livingEntity = slotContext.entity();
+
+        assert stack.getTag() != null;
+
+        stack.getOrCreateTag().putInt("BlocksMoved", 0);
+        stack.getOrCreateTag().putInt("DamageDealt", 0);
+
+
+        DamageSource damageSource = DamageTypeHelper.create(HEART_ATTACK, livingEntity);
+        if(!livingEntity.hasEffect(MobEffects.REGENERATION)){
+            livingEntity.hurt(damageSource,livingEntity.getHealth()+livingEntity.getAbsorptionAmount());
+        }
+    }
+}
