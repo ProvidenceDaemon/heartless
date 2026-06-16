@@ -2,6 +2,9 @@ package com.providence.heartless.item.curios;
 
 import com.providence.heartless.Heartless;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.chat.OutgoingChatMessage;
+import net.minecraft.network.chat.PlayerChatMessage;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.*;
 import net.minecraft.world.damagesource.DamageSource;
@@ -24,7 +27,7 @@ public class MomentumHeart extends HeartCurio {
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         final LivingEntity livingEntity = slotContext.entity();
-        if (livingEntity.level().getGameTime() % 200L == 0) {
+        if (livingEntity.level().getGameTime() % 100L == 0 && !livingEntity.level().isClientSide()) {
             boolean increase = trackStatIncrease(slotContext, stack);
             //if the player has taken actions in the last second, increase level
             if(increase){
@@ -47,59 +50,66 @@ public class MomentumHeart extends HeartCurio {
         }
     }
 
-    public boolean trackStatIncrease(SlotContext slotContext, ItemStack stack){
-        Player player = ((Player) slotContext.entity());
-        StatsCounter statsHandler = new StatsCounter();
-        int blocksMoved = statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_ONE_CM)) + statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_UNDER_WATER_ONE_CM)) +
-                statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_ON_WATER_ONE_CM)) + statsHandler.getValue(Stats.CUSTOM.get(Stats.SPRINT_ONE_CM)) +
-                statsHandler.getValue(Stats.CUSTOM.get(Stats.SWIM_ONE_CM)) + statsHandler.getValue(Stats.CUSTOM.get(Stats.SPRINT_ONE_CM));
-        int damageDealt = statsHandler.getValue(Stats.CUSTOM.get(Stats.DAMAGE_DEALT));
+    public boolean trackStatIncrease(SlotContext context, ItemStack stack){
 
-        int movedDiff = blocksMoved - stack.getTag().getInt("BlocksMoved");
-        int damageDiff = damageDealt - stack.getTag().getInt("DamageDealt");
-
-        if((movedDiff + damageDealt * 2) >= 15){
-            stack.getOrCreateTag().putInt("BlocksMoved", blocksMoved);
-            stack.getOrCreateTag().putInt("DamageDealt", damageDealt);
-            return true;
-        }
-        else{
-            stack.getOrCreateTag().putInt("BlocksMoved", blocksMoved);
-            stack.getOrCreateTag().putInt("DamageDealt", damageDealt);
-            return false;
-        }
-    }
-
-    @Override
-    public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-        ServerPlayer player = ((ServerPlayer) slotContext.entity());
+        ServerPlayer player = ((ServerPlayer) context.entity());
         StatsCounter statsHandler = player.getStats();
         int blocksMoved = statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_ONE_CM)) + statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_UNDER_WATER_ONE_CM)) +
                 statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_ON_WATER_ONE_CM)) + statsHandler.getValue(Stats.CUSTOM.get(Stats.SPRINT_ONE_CM)) +
                 statsHandler.getValue(Stats.CUSTOM.get(Stats.SWIM_ONE_CM)) + statsHandler.getValue(Stats.CUSTOM.get(Stats.SPRINT_ONE_CM));
         int damageDealt = statsHandler.getValue(Stats.CUSTOM.get(Stats.DAMAGE_DEALT));
 
+        double movedDiff = (double) (blocksMoved - stack.getTag().getInt("BlocksMoved")) /200;
+        double damageDiff = (double) (damageDealt - stack.getTag().getInt("DamageDealt")) /10;
+
         stack.getOrCreateTag().putInt("BlocksMoved", blocksMoved);
         stack.getOrCreateTag().putInt("DamageDealt", damageDealt);
 
-        if (slotContext.entity().hasEffect(Heartless.INERTIA.get())){
-            slotContext.entity().addEffect(new MobEffectInstance(Heartless.INERTIA.get(), 1000, 9));
+        String message = "movedDiff:" + movedDiff + "damageDiff" + damageDiff;
+        PlayerChatMessage chatMessage = PlayerChatMessage.unsigned(player.getUUID(), message);
+        player.createCommandSourceStack().sendChatMessage(new OutgoingChatMessage.Player(chatMessage), false, ChatType.bind(ChatType.CHAT, player));
+
+        if((movedDiff + damageDiff * 2) >= 10){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 
     @Override
-    public void onUnequip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
+    public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
+        if (!prevStack.is(Heartless.MOMENTUM_HEART.get())){
+            slotContext.entity().addEffect(new MobEffectInstance(Heartless.INERTIA.get(), 1000, 24));
+            ServerPlayer player = ((ServerPlayer) slotContext.entity());
+            StatsCounter statsHandler = player.getStats();
+            int blocksMoved = statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_ONE_CM)) + statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_UNDER_WATER_ONE_CM)) +
+                    statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_ON_WATER_ONE_CM)) + statsHandler.getValue(Stats.CUSTOM.get(Stats.SPRINT_ONE_CM)) +
+                    statsHandler.getValue(Stats.CUSTOM.get(Stats.SWIM_ONE_CM)) + statsHandler.getValue(Stats.CUSTOM.get(Stats.SPRINT_ONE_CM));
+            int damageDealt = statsHandler.getValue(Stats.CUSTOM.get(Stats.DAMAGE_DEALT));
+
+            stack.getOrCreateTag().putInt("BlocksMoved", blocksMoved);
+            stack.getOrCreateTag().putInt("DamageDealt", damageDealt);
+        }
+    }
+
+    @Override
+    public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
         final LivingEntity livingEntity = slotContext.entity();
-
+        ServerPlayer player = ((ServerPlayer) slotContext.entity());
         assert stack.getTag() != null;
+        if (!newStack.is(Heartless.MOMENTUM_HEART.get())) {
+            stack.getOrCreateTag().putInt("BlocksMoved", 0);
+            stack.getOrCreateTag().putInt("DamageDealt", 0);
 
-        stack.getOrCreateTag().putInt("BlocksMoved", 0);
-        stack.getOrCreateTag().putInt("DamageDealt", 0);
+            String message = "Unequip";
+            PlayerChatMessage chatMessage = PlayerChatMessage.unsigned(player.getUUID(), message);
+            player.createCommandSourceStack().sendChatMessage(new OutgoingChatMessage.Player(chatMessage), false, ChatType.bind(ChatType.CHAT, player));
 
-
-        DamageSource damageSource = DamageTypeHelper.create(HEART_ATTACK, livingEntity);
-        if(!livingEntity.hasEffect(MobEffects.REGENERATION)){
-            livingEntity.hurt(damageSource,livingEntity.getHealth()+livingEntity.getAbsorptionAmount());
+            DamageSource damageSource = DamageTypeHelper.create(HEART_ATTACK, livingEntity);
+            if (!livingEntity.hasEffect(MobEffects.REGENERATION)) {
+                livingEntity.hurt(damageSource, livingEntity.getHealth() + livingEntity.getAbsorptionAmount());
+            }
         }
     }
 }

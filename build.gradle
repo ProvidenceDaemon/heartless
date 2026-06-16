@@ -136,7 +136,10 @@ repositories {
         name = "Shadows_of_Fire's Maven"
         url "https://maven.shadowsoffire.dev/releases"
     }
-
+    maven {
+        name = "TerraformersMC"
+        url = "https://maven.terraformersmc.com/"
+    }
 }
 
 dependencies {
@@ -145,6 +148,9 @@ dependencies {
 
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+
+    compileOnly fg.deobf("dev.emi:emi-forge:${emi_version}:api")
+    runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}")
 
     implementation fg.deobf("team.lodestar.lodestone:lodestone:${minecraft_version}-${lodestone_version}"){
         transitive = false
