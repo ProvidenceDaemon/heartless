@@ -1,4 +1,5 @@
 {
   "size": 1,
-  "dropRule": "ALWAYS_KEEP"
+  "drop_rule": "ALWAYS_KEEP",
+  "icon": "heartless:slot/heart_slot_icon"
 }
