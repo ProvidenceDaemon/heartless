@@ -2,6 +2,7 @@ package com.providence.heartless.item.curios;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -10,7 +11,9 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
+import java.util.List;
 import java.util.UUID;
 
 public class BarbarianHeart extends HeartCurio{
@@ -27,4 +30,11 @@ public class BarbarianHeart extends HeartCurio{
         builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(uuid, "Speed Nerf", -0.1, AttributeModifier.Operation.MULTIPLY_TOTAL));
         return builder.build();
     }
+
+    @Override
+    public List<Component> getAttributesTooltip(List<Component> tooltips, ItemStack stack) {
+        tooltips.add(getDescription(stack));
+        return super.getAttributesTooltip(tooltips, stack);
+    }
+
 }

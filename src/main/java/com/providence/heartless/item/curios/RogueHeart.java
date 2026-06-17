@@ -2,6 +2,7 @@ package com.providence.heartless.item.curios;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -12,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 
 
+import java.util.List;
 import java.util.UUID;
 
 public class RogueHeart extends HeartCurio {
@@ -27,5 +29,11 @@ public class RogueHeart extends HeartCurio {
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = new ImmutableMultimap.Builder<>();
         builder.put(Attributes.MAX_HEALTH, new AttributeModifier(uuid, "Health Nerf", -4, AttributeModifier.Operation.ADDITION));
         return builder.build();
+    }
+
+    @Override
+    public List<Component> getAttributesTooltip(List<Component> tooltips, ItemStack stack) {
+        tooltips.add(getDescription(stack));
+        return super.getAttributesTooltip(tooltips, stack);
     }
 }

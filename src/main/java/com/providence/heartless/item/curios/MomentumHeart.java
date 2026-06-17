@@ -1,8 +1,10 @@
 package com.providence.heartless.item.curios;
 
 import com.providence.heartless.Heartless;
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.OutgoingChatMessage;
 import net.minecraft.network.chat.PlayerChatMessage;
 import net.minecraft.server.level.ServerPlayer;
@@ -15,10 +17,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.stats.StatsCounter;
+import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import team.lodestar.lodestone.helpers.DamageTypeHelper;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
+
+import java.util.List;
 
 import static com.providence.heartless.Heartless.HEART_ATTACK;
 
@@ -65,10 +71,6 @@ public class MomentumHeart extends HeartCurio {
         stack.getOrCreateTag().putInt("BlocksMoved", blocksMoved);
         stack.getOrCreateTag().putInt("DamageDealt", damageDealt);
 
-        String message = "movedDiff:" + movedDiff + "damageDiff" + damageDiff;
-        PlayerChatMessage chatMessage = PlayerChatMessage.unsigned(player.getUUID(), message);
-        player.createCommandSourceStack().sendChatMessage(new OutgoingChatMessage.Player(chatMessage), false, ChatType.bind(ChatType.CHAT, player));
-
         if((movedDiff + damageDiff * 2) >= 10){
             return true;
         }
@@ -98,18 +100,21 @@ public class MomentumHeart extends HeartCurio {
         final LivingEntity livingEntity = slotContext.entity();
         ServerPlayer player = ((ServerPlayer) slotContext.entity());
         assert stack.getTag() != null;
-        if (!newStack.is(Heartless.MOMENTUM_HEART.get())) {
+        if (!newStack.is(Heartless.MOMENTUM_HEART.get()) && !newStack.is(Heartless.BROKEN_MOMENTUM_HEART.get())) {
             stack.getOrCreateTag().putInt("BlocksMoved", 0);
             stack.getOrCreateTag().putInt("DamageDealt", 0);
-
-            String message = "Unequip";
-            PlayerChatMessage chatMessage = PlayerChatMessage.unsigned(player.getUUID(), message);
-            player.createCommandSourceStack().sendChatMessage(new OutgoingChatMessage.Player(chatMessage), false, ChatType.bind(ChatType.CHAT, player));
 
             DamageSource damageSource = DamageTypeHelper.create(HEART_ATTACK, livingEntity);
             if (!livingEntity.hasEffect(MobEffects.REGENERATION)) {
                 livingEntity.hurt(damageSource, livingEntity.getHealth() + livingEntity.getAbsorptionAmount());
             }
         }
+    }
+
+    @Override
+    public List<Component> getAttributesTooltip(List<Component> tooltips, ItemStack stack) {
+        tooltips.add(Component.translatable("curios.modifiers.heart").withStyle(ChatFormatting.GOLD));
+        tooltips.add(getDescription(stack));
+        return super.getAttributesTooltip(tooltips, stack);
     }
 }

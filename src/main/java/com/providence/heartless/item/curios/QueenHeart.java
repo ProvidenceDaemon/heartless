@@ -1,5 +1,7 @@
 package com.providence.heartless.item.curios;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -22,5 +24,12 @@ public class QueenHeart extends HeartCurio {
                 livingEntity.addEffect(newEffect);
             }
         }
+    }
+
+    @Override
+    public List<Component> getAttributesTooltip(List<Component> tooltips, ItemStack stack) {
+        tooltips.add(Component.translatable("curios.modifiers.heart").withStyle(ChatFormatting.GOLD));
+        tooltips.add(getDescription(stack));
+        return super.getAttributesTooltip(tooltips, stack);
     }
 }

@@ -1,9 +1,17 @@
 {
   "curios.identifier.heart": "Heart",
+  "curios.modifiers.heart": "When replacing your natural heart:",
   "item.heartless.rogue_heart": "Rogue Heart",
+  "item.heartless.rogue_heart.desc": "Permanent Invisibility",
   "item.heartless.barbarian_heart": "Barbarian Heart",
+  "item.heartless.barbarian_heart.desc": "Permanent Strength I",
   "item.heartless.cleric_heart": "Cleric Heart",
   "item.heartless.ranger_heart": "Ranger Heart",
   "item.heartless.queen_heart": "Heart of the Queen",
+  "item.heartless.queen_heart.desc": "Doubles the length of all potion effects, both positive and negative, that you are afflicted with",
+  "item.heartless.momentum_heart": "Heart of Momentum",
+  "item.heartless.momentum_heart.desc": "Moving and dealing damage grants levels of Inertia, which increases your move speed, mining speed, and attack speed. Not moving or dealing enough damage causes you to lose levels of Inertia. Running out of Inertia could be fatal...",
+  "item.heartless.broken_momentum_heart": "Broken Heart of Momentum",
+  "effect.heartless.inertia": "Inertia",
   "death.attack.heart_attack": "%s died of a broken heart"
 }
