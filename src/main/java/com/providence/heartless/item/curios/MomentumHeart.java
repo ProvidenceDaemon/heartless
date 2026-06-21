@@ -2,24 +2,15 @@ package com.providence.heartless.item.curios;
 
 import com.providence.heartless.Heartless;
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.OutgoingChatMessage;
-import net.minecraft.network.chat.PlayerChatMessage;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.*;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.stats.StatsCounter;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import team.lodestar.lodestone.helpers.DamageTypeHelper;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
@@ -28,7 +19,7 @@ import java.util.List;
 
 import static com.providence.heartless.Heartless.HEART_ATTACK;
 
-@Mod.EventBusSubscriber(modid = Heartless.MOD_ID)
+
 public class MomentumHeart extends HeartCurio {
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {

@@ -25,6 +25,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         Heartless.RANGER_HEART.get(),
                         Heartless.ROGUE_HEART.get(),
                         Heartless.QUEEN_HEART.get(),
+                        Heartless.VOID_HEART.get(),
                         Heartless.MOMENTUM_HEART.get());
         this.tag(ModTag.Items.ENEMY_HEART)
                 .add(Heartless.CLERIC_HEART.get(),

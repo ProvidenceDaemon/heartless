@@ -26,6 +26,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(CLERIC_HEART);
         simpleItem(BROKEN_MOMENTUM_HEART);
         simpleItem(MOMENTUM_HEART);
+        simpleItem(VOID_HEART);
         handheldItem(HEART_RIPPER);
     }
 
