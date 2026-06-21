@@ -1,14 +1,19 @@
 package com.providence.heartless.item.weapons;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import top.theillusivec4.curios.api.CuriosApi;
 
-import static com.providence.heartless.util.ModTag.Items.HEART;
+import javax.annotation.Nullable;
+import java.util.List;
 
+import static com.providence.heartless.util.ModTag.Items.HEART;
 
 public class HeartRipper extends SwordItem {
     public HeartRipper(Tier tier, int attackDamage, float attackSpeed, Properties properties) {
@@ -40,6 +45,12 @@ public class HeartRipper extends SwordItem {
             });
         }
         return super.hurtEnemy(stack, target, attacker);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced){
+        tooltipComponents.add(Component.translatable("item.heartless.heart_ripper.desc").withStyle(ChatFormatting.BLUE));
+        super.appendHoverText(item, level, tooltipComponents, isAdvanced);
     }
 }
 

@@ -14,9 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.stats.StatsCounter;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
-
 import java.util.List;
-
 import static com.providence.heartless.Heartless.HEART_ATTACK;
 
 

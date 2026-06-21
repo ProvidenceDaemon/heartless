@@ -15,8 +15,6 @@ import top.theillusivec4.curios.api.CuriosApi;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
-
 @Mod.EventBusSubscriber(modid = Heartless.MOD_ID)
 public class QueenHeartGrow {
     @SubscribeEvent

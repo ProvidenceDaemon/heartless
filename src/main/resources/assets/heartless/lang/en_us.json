@@ -4,6 +4,7 @@
   "effect.heartless.inertia": "Inertia",
   "death.attack.heart_attack": "%s died of a broken heart",
 
+  "item.heartless.heart_ripper": "Heart Ripper",
   "item.heartless.rogue_heart": "Rogue Heart",
   "item.heartless.barbarian_heart": "Barbarian Heart",
   "item.heartless.cleric_heart": "Cleric Heart",
@@ -13,6 +14,7 @@
   "item.heartless.broken_momentum_heart": "Broken Heart of Momentum",
   "item.heartless.void_heart": "Heart of Void",
 
+  "item.heartless.heart_ripper.desc": "Rips out the hearts of weakened foes",
   "item.heartless.rogue_heart.desc": "Permanent Invisibility",
   "item.heartless.barbarian_heart.desc": "Permanent Strength I",
   "item.heartless.queen_heart.desc": "Doubles the length of all potion effects, both positive and negative, that you are afflicted with",

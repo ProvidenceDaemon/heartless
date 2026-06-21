@@ -10,7 +10,6 @@ import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.SlotContext;
-
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Heartless.MOD_ID)
