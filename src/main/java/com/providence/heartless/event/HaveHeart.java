@@ -1,6 +1,8 @@
 package com.providence.heartless.event;
 
 import com.providence.heartless.Heartless;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;
@@ -28,28 +30,32 @@ public class HaveHeart {
         validEntity.add(EntityType.WITCH);
 
         Random r = new Random();
-        int rand = r.nextInt(0,75);
+        int rand = r.nextInt(0,124);
         if(validEntity.contains(mob.getType()))
             switch(rand){
                 case 0:
                     CuriosApi.getCuriosInventory(mob).ifPresent(curiosInventory -> {
                         curiosInventory.setEquippedCurio("enemy_heart", 0, new ItemStack(Heartless.ROGUE_HEART.get()));
                     });
+                    mob.addEffect(new MobEffectInstance(MobEffects.GLOWING, 900));
                     break;
                 case 1:
                     CuriosApi.getCuriosInventory(mob).ifPresent(curiosInventory -> {
                         curiosInventory.setEquippedCurio("enemy_heart", 0, new ItemStack(Heartless.RANGER_HEART.get()));
                     });
+                    mob.addEffect(new MobEffectInstance(MobEffects.GLOWING, 900));
                     break;
                 case 2:
                     CuriosApi.getCuriosInventory(mob).ifPresent(curiosInventory -> {
                         curiosInventory.setEquippedCurio("enemy_heart", 0, new ItemStack(Heartless.BARBARIAN_HEART.get()));
                     });
+                    mob.addEffect(new MobEffectInstance(MobEffects.GLOWING, 900));
                     break;
                 case 3:
                     CuriosApi.getCuriosInventory(mob).ifPresent(curiosInventory -> {
                         curiosInventory.setEquippedCurio("enemy_heart", 0, new ItemStack(Heartless.CLERIC_HEART.get()));
                     });
+                    mob.addEffect(new MobEffectInstance(MobEffects.GLOWING, 900));
                     break;
             }
 
