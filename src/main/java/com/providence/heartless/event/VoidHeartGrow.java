@@ -16,7 +16,7 @@ public class VoidHeartGrow {
     public static void onLivingHurt(LivingHurtEvent event){
         LivingEntity living = event.getEntity();
         if(living instanceof Player && event.getSource().is(DamageTypes.FELL_OUT_OF_WORLD)){
-            if(living.getHealth() < 4){
+            if(living.getHealth() < 5){
                 CuriosApi.getCuriosInventory(event.getEntity()).ifPresent(curiosInventory -> {
                     if (curiosInventory.findCurio("heart", 0).isEmpty()) {
                         curiosInventory.setEquippedCurio("heart", 0, new ItemStack(Heartless.VOID_HEART.get()));
