@@ -152,9 +152,6 @@ dependencies {
     compileOnly fg.deobf("dev.emi:emi-forge:${emi_version}:api")
     runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}")
 
-    implementation fg.deobf("team.lodestar.lodestone:lodestone:${minecraft_version}-${lodestone_version}"){
-        transitive = false
-    }
     implementation fg.deobf("dev.shadowsoffire:Placebo:${minecraft_version}-${placeboVersion}"){
         transitive = false
     }

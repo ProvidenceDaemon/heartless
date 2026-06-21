@@ -3,9 +3,11 @@ package com.providence.heartless.item.curios;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
+import com.providence.heartless.Heartless;
 import com.providence.heartless.util.AttributeContainer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffects;
@@ -33,7 +35,7 @@ public class HeartCurio extends Item implements ICurioItem {
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
         final LivingEntity livingEntity = slotContext.entity();
-        DamageSource damageSource = DamageTypeHelper.create(HEART_ATTACK, livingEntity);
+        DamageSource damageSource = new DamageSource(livingEntity.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(HEART_ATTACK), livingEntity);
         if(!livingEntity.hasEffect(MobEffects.REGENERATION)){
             livingEntity.hurt(damageSource,livingEntity.getHealth()+livingEntity.getAbsorptionAmount());
         }
