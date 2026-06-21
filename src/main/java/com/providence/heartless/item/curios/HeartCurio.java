@@ -16,12 +16,8 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import team.lodestar.lodestone.helpers.DamageTypeHelper;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
-
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -44,6 +40,8 @@ public class HeartCurio extends Item implements ICurioItem {
 
     private List<AttributeContainer> attributeTemplates = List.of();
     /**
+     * Credit: gooMC, method from his Brutality mod
+     *
      * Generates the attribute modifiers for this Curio when equipped.
      * <p>
      * To prevent UUID collisions between different attributes on the same item, this method

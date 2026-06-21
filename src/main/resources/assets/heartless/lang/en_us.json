@@ -17,5 +17,6 @@
   "item.heartless.barbarian_heart.desc": "Permanent Strength I",
   "item.heartless.queen_heart.desc": "Doubles the length of all potion effects, both positive and negative, that you are afflicted with",
   "item.heartless.momentum_heart.desc": "Moving and dealing damage grants levels of Inertia, which increases your move speed, mining speed, and attack speed. Not moving or dealing enough damage causes you to lose levels of Inertia",
+  "item.heartless.broken_momentum_heart.desc": "Oops...",
   "item.heartless.void_heart.desc": "Projectiles phase through you, but your hunger drains quickly"
 }

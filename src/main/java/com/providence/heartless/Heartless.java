@@ -38,7 +38,7 @@ public class Heartless {
     public static final RegistryObject<Item> QUEEN_HEART = ITEMS.register("queen_heart", QueenHeart::new);
     public static final RegistryObject<Item> VOID_HEART = ITEMS.register("void_heart", VoidHeart::new);
     public static final RegistryObject<Item> MOMENTUM_HEART = ITEMS.register("momentum_heart", MomentumHeart::new);
-    public static final RegistryObject<Item> BROKEN_MOMENTUM_HEART = ITEMS.register("broken_momentum_heart", HeartCurio::new);
+    public static final RegistryObject<Item> BROKEN_MOMENTUM_HEART = ITEMS.register("broken_momentum_heart", BrokenMomentumHeart::new);
 
     public static final RegistryObject<SwordItem> HEART_RIPPER = ITEMS.register("heart_ripper", () -> new HeartRipper(HeartlessTiers.RIPPER, 1, -2.4F, new Item.Properties()));
 

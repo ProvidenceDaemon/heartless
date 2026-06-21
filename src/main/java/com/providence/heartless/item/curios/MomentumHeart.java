@@ -2,6 +2,7 @@ package com.providence.heartless.item.curios;
 
 import com.providence.heartless.Heartless;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.*;
@@ -11,7 +12,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.stats.StatsCounter;
-import team.lodestar.lodestone.helpers.DamageTypeHelper;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 
@@ -95,7 +95,7 @@ public class MomentumHeart extends HeartCurio {
             stack.getOrCreateTag().putInt("BlocksMoved", 0);
             stack.getOrCreateTag().putInt("DamageDealt", 0);
 
-            DamageSource damageSource = DamageTypeHelper.create(HEART_ATTACK, livingEntity);
+            DamageSource damageSource = new DamageSource(livingEntity.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(HEART_ATTACK), livingEntity);
             if (!livingEntity.hasEffect(MobEffects.REGENERATION)) {
                 livingEntity.hurt(damageSource, livingEntity.getHealth() + livingEntity.getAbsorptionAmount());
             }
