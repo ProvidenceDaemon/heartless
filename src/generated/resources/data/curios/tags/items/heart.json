@@ -6,6 +6,7 @@
     "heartless:rogue_heart",
     "heartless:queen_heart",
     "heartless:void_heart",
-    "heartless:momentum_heart"
+    "heartless:momentum_heart",
+    "heartless:broken_momentum_heart"
   ]
 }
