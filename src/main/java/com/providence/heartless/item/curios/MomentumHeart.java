@@ -46,7 +46,6 @@ public class MomentumHeart extends HeartCurio {
     }
 
     public boolean trackStatIncrease(SlotContext context, ItemStack stack){
-
         ServerPlayer player = ((ServerPlayer) context.entity());
         StatsCounter statsHandler = player.getStats();
         int blocksMoved = statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_ONE_CM)) + statsHandler.getValue(Stats.CUSTOM.get(Stats.WALK_UNDER_WATER_ONE_CM)) +

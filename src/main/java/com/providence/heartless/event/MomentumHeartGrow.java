@@ -13,7 +13,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 public class MomentumHeartGrow {
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event){
-        if(event.getEntity() instanceof Player && event.getSource().is(DamageTypes.FLY_INTO_WALL) && event.getAmount() >= 12){
+        if(event.getEntity() instanceof Player && event.getSource().is(DamageTypes.FLY_INTO_WALL) && event.getAmount() >= 10){
             CuriosApi.getCuriosInventory(event.getEntity()).ifPresent(curiosInventory -> {
                 if (curiosInventory.findCurio("heart", 0).isEmpty()) {
                     curiosInventory.setEquippedCurio("heart", 0, new ItemStack(Heartless.MOMENTUM_HEART.get()));
