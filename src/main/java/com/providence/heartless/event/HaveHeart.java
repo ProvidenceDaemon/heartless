@@ -37,25 +37,21 @@ public class HaveHeart {
                     CuriosApi.getCuriosInventory(mob).ifPresent(curiosInventory -> {
                         curiosInventory.setEquippedCurio("enemy_heart", 0, new ItemStack(Heartless.ROGUE_HEART.get()));
                     });
-                    mob.addEffect(new MobEffectInstance(MobEffects.GLOWING, 900));
                     break;
                 case 1:
                     CuriosApi.getCuriosInventory(mob).ifPresent(curiosInventory -> {
                         curiosInventory.setEquippedCurio("enemy_heart", 0, new ItemStack(Heartless.RANGER_HEART.get()));
                     });
-                    mob.addEffect(new MobEffectInstance(MobEffects.GLOWING, 900));
                     break;
                 case 2:
                     CuriosApi.getCuriosInventory(mob).ifPresent(curiosInventory -> {
                         curiosInventory.setEquippedCurio("enemy_heart", 0, new ItemStack(Heartless.BARBARIAN_HEART.get()));
                     });
-                    mob.addEffect(new MobEffectInstance(MobEffects.GLOWING, 900));
                     break;
                 case 3:
                     CuriosApi.getCuriosInventory(mob).ifPresent(curiosInventory -> {
                         curiosInventory.setEquippedCurio("enemy_heart", 0, new ItemStack(Heartless.CLERIC_HEART.get()));
                     });
-                    mob.addEffect(new MobEffectInstance(MobEffects.GLOWING, 900));
                     break;
             }
 
