@@ -1,5 +1,5 @@
 Thank you so much to all my very cool friends who contributed textures & concepts to this mod:
-Ozymandias: Queen Heart concept and Barbarian Heart texture (and the curio slot texture since i just traced the outline)
-STARRYSOCK: Textures for the Queen Heart, Ranger Heart, Momentum Heart & its broken counterpart, and the Heart Ripper
+STARRYSOCK: Textures for the Queen Heart, Ranger Heart, Barbarian Heart, Momentum Heart & its broken counterpart, and the Heart Ripper
 Micomi: Textures for the Void Heart, Cleric Heart, and Rogue Heart
+Ozymandias: Queen Heart concept and the base texture for the curio slot
 EliteMeats: Momentum Heart concept
