@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "heartless:broken_momentum_heart"
+    },
+    "title": {
+      "translate": "advancements.heartless.broken_momentum_heart.title"
+    },
+    "description": {
+      "translate": "advancements.heartless.broken_momentum_heart.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "heartless:heartless/momentum_heart",
+  "criteria": {
+    "grow_heart": {
+      "conditions": {
+        "item": {
+          "items": [
+            "heartless:broken_momentum_heart"
+          ]
+        }
+      },
+      "trigger": "curios:equip_curio"
+    }
+  }
+}

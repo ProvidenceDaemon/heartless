@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "heartless:void_heart"
+    },
+    "title": {
+      "translate": "advancements.heartless.void_heart.title"
+    },
+    "description": {
+      "translate": "advancements.heartless.void_heart.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "heartless:heartless/root",
+  "criteria": {
+    "grow_heart": {
+      "conditions": {
+        "item": {
+          "items": [
+            "heartless:void_heart"
+          ]
+        }
+      },
+      "trigger": "curios:equip_curio"
+    }
+  }
+}

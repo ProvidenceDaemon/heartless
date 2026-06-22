@@ -12,7 +12,7 @@
   "item.heartless.queen_heart": "Heart of the Queen",
   "item.heartless.momentum_heart": "Heart of Momentum",
   "item.heartless.broken_momentum_heart": "Broken Heart of Momentum",
-  "item.heartless.void_heart": "Heart of Void",
+  "item.heartless.void_heart": "Heart of the Void",
 
   "item.heartless.heart_ripper.desc": "Rips out the hearts of weakened foes",
   "item.heartless.rogue_heart.desc": "Permanent Invisibility",
@@ -20,5 +20,26 @@
   "item.heartless.queen_heart.desc": "Doubles the length of all potion effects, both positive and negative, that you are afflicted with",
   "item.heartless.momentum_heart.desc": "Moving and dealing damage grants levels of Inertia, which increases your move speed, mining speed, and attack speed. Not moving or dealing enough damage causes you to lose levels of Inertia",
   "item.heartless.broken_momentum_heart.desc": "Oops...",
-  "item.heartless.void_heart.desc": "Projectiles phase through you, but your hunger drains quickly"
+  "item.heartless.void_heart.desc": "Voids any projectiles that touch you, but your hunger drains quickly",
+
+  "advancements.heartless.root.title": "Heartless",
+  "advancements.heartless.root.description": "Change yourself, and become powerful",
+  "advancements.heartless.equip_heart.title": "Transplant",
+  "advancements.heartless.equip_heart.description": "Equip or grow any heart",
+  "advancements.heartless.heart_attack.title": "I Do My Crosswords In Pen",
+  "advancements.heartless.heart_attack.description": "Become heartless (and die as a result)",
+  "advancements.heartless.heart_ripper.title": "Involuntary Heart Surgery",
+  "advancements.heartless.heart_ripper.description": "Craft a Heart Ripper, used to separate a heart from its owner",
+  "advancements.heartless.class_heart.title": "Choose your class",
+  "advancements.heartless.class_heart.description": "Use a Heart Ripper to remove a heart from its bearer",
+  "advancements.heartless.all_class_heart.title": "Full Party",
+  "advancements.heartless.all_class_heart.description": "Acquire all four class hearts",
+  "advancements.heartless.queen_heart.title": "Queen of Queens",
+  "advancements.heartless.queen_heart.description": "Grow the Heart of the Queen",
+  "advancements.heartless.momentum_heart.title": "An Elite Heart",
+  "advancements.heartless.momentum_heart.description": "Grow the Heart of Momentum",
+  "advancements.heartless.broken_momentum_heart.title": "An Object at Rest",
+  "advancements.heartless.broken_momentum_heart.description": "Break the Heart of Momentum",
+  "advancements.heartless.void_heart.title": "Void Given Form",
+  "advancements.heartless.void_heart.description": "Grow the Heart of the Void"
 }

@@ -1,0 +1,47 @@
+{
+  "display": {
+    "icon": {
+      "item": "heartless:ranger_heart"
+    },
+    "title": {
+      "translate": "advancements.heartless.all_class_heart.title"
+    },
+    "description": {
+      "translate": "advancements.heartless.all_class_heart.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "heartless:heartless/class_heart",
+  "criteria": {
+    "all_hearts": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "heartless:barbarian_heart"
+            ]
+          },
+          {
+            "items": [
+              "heartless:cleric_heart"
+            ]
+          },
+          {
+            "items": [
+              "heartless:ranger_heart"
+            ]
+          },
+          {
+            "items": [
+              "heartless:rogue_heart"
+            ]
+          }
+        ]
+      }
+      }
+    }
+  }

@@ -1,0 +1,76 @@
+{
+  "display": {
+    "icon": {
+      "item": "heartless:rogue_heart"
+    },
+    "title": {
+      "translate": "advancements.heartless.class_heart.title"
+    },
+    "description": {
+      "translate": "advancements.heartless.class_heart.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "parent": "heartless:heartless/heart_ripper",
+  "criteria": {
+    "barbarian_heart": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "heartless:barbarian_heart"
+            ]
+          }
+        ]
+      }
+    },
+    "cleric_heart": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "heartless:cleric_heart"
+            ]
+          }
+        ]
+      }
+    },
+    "rogue_heart": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "heartless:rogue_heart"
+            ]
+          }
+        ]
+      }
+    },
+    "ranger_heart": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "heartless:ranger_heart"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rogue_heart",
+      "barbarian_heart",
+      "cleric_heart",
+      "ranger_heart"
+    ]
+  ]
+}
