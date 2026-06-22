@@ -22,6 +22,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
+import static com.providence.heartless.item.HeartlessCreativeTab.CREATIVE_MODE_TABS;
+
 @Mod(Heartless.MOD_ID)
 
 public class Heartless {
@@ -93,5 +95,6 @@ public class Heartless {
     public Heartless() {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         EFFECTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        CREATIVE_MODE_TABS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 }
